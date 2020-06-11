@@ -1,0 +1,104 @@
+create table Restaurante(id_restaurante int primary key, empleado int, 
+menu int, factura int);
+
+create table Empleado(id_empleado int primary key, nombre varchar(100),
+cargo varchar(50), jornada int);
+
+create table Jornada(id_jornada int primary key, horario varchar(50),
+apertura_caja int, cierre_caja int, balance_jornada int);
+
+alter table Empleado add constraint FK_jornada foreign key(jornada)
+references Jornada(id_jornada);
+
+alter table Restaurante add constraint FK_empleado foreign key
+(empleado) references Empleado(id_empleado);
+
+create table Menu(id_menu int primary key, comidas varchar(100),
+bebidas varchar(100));
+
+create table Comida(nombre_comida varchar(100) primary key,
+precio int not null, descripcion varchar(100), inventario_comida int);
+
+create table Bebida(nombre_bebida varchar(100) primary key,
+precio int not null, descripcion varchar(100), inventario_bebidas int);
+
+alter table Menu add constraint FK_comidas foreign key(comidas)
+references Comida(nombre_comida);
+
+alter table Menu add constraint FK_bebidas foreign key(bebidas)
+references Bebida(nombre_bebida);
+
+create table Inventario(id_inventario int primary key,
+producto varchar(100) not null, cantidad int not null,
+costo_unidad int not null, costo_total int not null);
+
+alter table Comida add constraint FK_inventario_comida
+foreign key(inventario_comida) references
+Inventario(id_inventario);
+
+alter table Bebida add constraint FK_inventario_bebidas
+foreign key(inventario_bebidas) references
+Inventario(id_inventario);
+
+create table Factura(id_factura int auto_increment primary key,
+fecha datetime, cantidad int not null, comida int,
+precio_unidad_comida int not null, bebida int, precio_unidad_bebida int,
+total int not null);
+
+alter table Restaurante add Constraint FK_factura foreign key(factura)
+references Factura(id_factura);
+
+insert into Jornada(id_jornada, horario, apertura_caja, cierre_caja,
+balance_jornada) values(1, '05:00 AM - 10:00 AM', 100000, null, null);
+
+insert into Jornada(id_jornada, horario, apertura_caja, cierre_caja,
+balance_jornada) values(2, '10:00 AM - 03:00 PM', 100000, null, null);
+
+insert into Jornada(id_jornada, horario, apertura_caja, cierre_caja,
+balance_jornada) values(3, '05:00 PM - 10:00 PM', 100000, null, null);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1090452797, 'Julián Jaimes', 'Chef', 1);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1234567890, 'Martín Luna', 'Ayudante de cocina', 1);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1098765432, 'Andrea Ríos', 'Cajera', 1);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1122334455, 'July Luna', 'Mesera', 1);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1541345635, 'Claudia Chávez', 'Mesera', 1);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1234509876, 'Jimena Ortega', 'Chef', 2);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1234123412, 'Edinson Botello', 'Ayudante de cocina', 2);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1029384756, 'Duvan Leal', 'Cajera', 2);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(154326987, 'Jairo Malandro', 'Mesero', 2);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1002993884, 'Rosa Melano', 'Mesera', 2);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(13541651, 'Juan Pablo BArreto', 'Chef', 3);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(15188546, 'Maurice Barreto', 'Ayudante de cocina', 3);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(1351864, 'Oscar Barreto', 'Cajero', 3);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(18564673, 'Johana Caicedo', 'Mesera', 3);
+
+insert into Empleado(id_empleado, nombre, cargo, jornada)
+values(32812453, 'Aquiles Castro', 'Mesero', 3);
+
