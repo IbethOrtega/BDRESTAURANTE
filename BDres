@@ -101,4 +101,3 @@ values(18564673, 'Johana Caicedo', 'Mesera', 3);
 
 insert into Empleado(id_empleado, nombre, cargo, jornada)
 values(32812453, 'Aquiles Castro', 'Mesero', 3);
-
